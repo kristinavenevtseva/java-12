@@ -9,17 +9,20 @@ public class ProductManager {
     private ProductRepository repository;
 
     public ProductManager(ProductRepository repository) {
+
         this.repository = repository;
     }
 
     public void add(Product product) {
+
         repository.save(product);
     }
 
     public Product[] searchBy(String text) {
         Product[] result = new Product[0];
+
         for (Product product : repository.findAll()) {
-            if (matches(product, text)) {
+            if (product.matches(text)) {
                 int lenght = result.length + 1;
                 Product[] tmp = new Product[lenght];
                 for (int i = 0; i < result.length; i++) {
@@ -30,29 +33,5 @@ public class ProductManager {
             }
         }
         return result;
-    }
-
-    public boolean matches(Product product, String search) {
-
-        if (product instanceof Book) {
-            Book book = (Book) product;
-            if (book.getName().equalsIgnoreCase(search)) {
-                return true;
-            }
-            if (book.getAuthor().equalsIgnoreCase(search)) {
-                return true;
-            }
-        }
-
-        if (product instanceof Smartphone) {
-            Smartphone smartphone = (Smartphone) product;
-            if (smartphone.getName().equalsIgnoreCase(search)) {
-                return true;
-            }
-            if (smartphone.getManufacturer().equalsIgnoreCase(search)) {
-                return true;
-            }
-        }
-        return false;
     }
 }
