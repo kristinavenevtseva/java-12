@@ -9,11 +9,7 @@ import ru.netology.repository.ProductRepository;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 class ProductManagerTest {
-    ProductRepository repository = new ProductRepository();
-    ProductManager manager = new ProductManager(repository);
-
-    private Book book = new Book();
-    private Smartphone smartphone = new Smartphone();
+    ProductManager manager = new ProductManager();
 
     @Test
     void shouldSearchBookByName() {

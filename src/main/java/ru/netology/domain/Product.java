@@ -18,7 +18,7 @@ public class Product {
 
     public boolean matches(String search) {
 
-        if (getName().matches(search)) {
+        if (getName().equalsIgnoreCase(search)) {
             return true;
         }
         return false;
